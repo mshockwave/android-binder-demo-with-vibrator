@@ -15,7 +15,7 @@ public:
         _data.writeInterfaceToken(IMyVibrator::getInterfaceDescriptor());
         remote() -> transact(TRANSACTION_hasVibrator, _data, &_reply);
         /*
-        * Need to read the exception before fetching return data!!
+        * Must read the exception before fetching return data!!
         * Since methods in AIDL file will always throw RemoteException
         */
         ALOGD("%s exception code: %d", __func__, _reply.readExceptionCode());

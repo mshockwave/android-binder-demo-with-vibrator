@@ -14,6 +14,9 @@ class IMyVibrator : public IInterface {
 public:
     DECLARE_META_INTERFACE(MyVibrator);
 
+    //Must add the "= 0" since at the time IMPLEMENT_META_INTERFACE is called,
+    //virtual functions in IMyVibrator are not fully implemented yet.
+    //So if you don't add, it will likely throw 'undefined reference: "vtable of XXX"' during compile process
     virtual bool hasVibrator(void) = 0;
     virtual void vibrate(int32_t uid, String16& opPkg, int64_t milliseconds, int32_t usageHint, sp<IBinder>& token) = 0;
     virtual void vibratePattern(int32_t uid, String16& opPkg, int64_t pattern[], int32_t repeat, int32_t usageHint, sp<IBinder>& token) = 0;
